@@ -8,11 +8,11 @@
     background: url(../../img/loading.jpg);
 }
 #Loader img{
-    position: absolute;
-    top: 232px;
-    left: 307px;
-    width: 85px;
-    height: 659px;
+    /*position: absolute;*/
+    /*top: 232px;*/
+    /*left: 307px;*/
+    /*width: 85px;*/
+    /*height: 659px;*/
 }
 #Loader .word{
     position: absolute;
@@ -25,6 +25,17 @@
     font-size: 60px;
     font-weight: bold;
 }
+#Loader .btnWord{
+    position: absolute;
+    width: 314px; height: 61px;
+    left: 175px; top: 972px;
+    display: none;
+}
+#Loader .btn{
+    position: absolute;
+    width: 352px; height: 98px;
+    left: 158px; top: 952px;
+}
 
 
 
@@ -32,70 +43,59 @@
 #Index{
     background-color: #000000;
 }
+#Index .bg{
+    position: absolute;
+    width: 100%; height: 100%;
+    left: 0; top: 0;
+}
 #Index .call1{
     position: absolute;
     width: 318px; height: 233px;
-    left: 212px; top: 858px;
+    left: 262px; top: 858px;
 }
 #Index .call2{
     position: absolute;
     width: 370px; height: 343px;
-    left: 164px; top: 748px;
+    left: 214px; top: 748px;
     display: none;
 }
 #Index .call_btn{
     position: absolute;
     width: 318px; height: 233px;
-    left: 212px; top: 858px;
+    left: 262px; top: 858px;
 }
 
-/*#Index .pic{*/
-    /*position: absolute; left: 67px; top: 150px;*/
-    /*width: 548px; height: 814px;*/
-    /*!*background: url(../../img/index/pic.png);*!*/
-    /*z-index: 1;*/
-/*}*/
-/*#Index .start{*/
-    /*position: absolute; left: 260px; top: 536px;*/
-    /*width: 179px; height: 148px;*/
-    /*z-index: 10000;*/
-/*}*/
-/*#Index .top{*/
-    /*position: absolute;*/
-    /*top: 47px;*/
-    /*left:157px;*/
-    /*!*background: url("../../img/index/face1_r3.png");*!*/
-    /*width:329px;*/
-    /*height: 128px;*/
-/*}*/
-/*#Index .topWheel{*/
-    /*position: absolute;*/
-    /*top: 67px;*/
-    /*left:215px;*/
-    /*!*background: url("../../img/index/face2_r1.png");*!*/
-    /*width:256px;*/
-    /*height: 256px;*/
-/*}*/
-/*#Index .bottom{*/
-    /*position: absolute;*/
-    /*top: 957px;*/
-    /*left:191px;*/
-    /*!*background: url("../../img/index/face1_r4.png");*!*/
-    /*width:302px;*/
-    /*height: 145px;*/
-/*}*/
-/*#Index .bottomWheel{*/
-    /*position: absolute;*/
-    /*top: 851px;*/
-    /*left:244px;*/
-    /*!*background: url("../../img/index/face2_r2.png");*!*/
-    /*width:198px;*/
-    /*height: 198px;*/
-/*}*/
+#Index .point{
+    position: absolute;
+    width: 214px; height: 127px;
+    left: 40px; top: 930px;
+}
+#Index .nai{
+    position: absolute;
+    width: 115px; height: 248px;
+    left: 568px; top: 658px;
+}
 
+#Time{
+    position: absolute;
+    width: 100px; height: 100px;
+    top: 20px;
+    left: 20px;
+    line-height: 98px;
+    text-align: center;
+    color: #000000;
+    font-size: 50px;
+    font-weight: bold;
+}
 
-/*#Read .bg{*/
-    /*!*background: url("../../img/index/rules.png");*!*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-/*}*/
+#ClickT{
+    position: absolute;
+    width: 100px; height: 100px;
+    top: 20px;
+    left: 220px;
+    line-height: 98px;
+    text-align: center;
+    color: #000000;
+    font-size: 50px;
+    font-weight: bold;
+}
