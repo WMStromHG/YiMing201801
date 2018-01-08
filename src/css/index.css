@@ -4,6 +4,9 @@
 #Loader{
     background-color: #000000;
 }
+#Loader .main{
+    background: url(../../img/loading.jpg);
+}
 #Loader img{
     position: absolute;
     top: 232px;
@@ -13,14 +16,14 @@
 }
 #Loader .word{
     position: absolute;
-    top: 590px;
-    left: 323px;
-    width: 55px;
-    height: 29px;
-    line-height: 29px;
+    width: 352px; height: 98px;
+    top: 952px;
+    left: 158px;
+    line-height: 98px;
     text-align: center;
-    color: #fff;
-    font-size: 20px;
+    color: #000000;
+    font-size: 60px;
+    font-weight: bold;
 }
 
 

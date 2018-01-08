@@ -6,6 +6,9 @@ Room.Loader.ppt = function(){
         cc.m[Start].css({"opacity": 0}).show().velocity({ opacity: 1}, { duration: 1000});
     })
 };
+Room.Loader.start = function(){
+
+};
 
 
 Room.Index = {};

@@ -25,7 +25,7 @@ function loader() {
         $("#Index .call2").html(Loads.get("call2"));
 
         // mp3_play("bg", 1);
-        setTimeout(Room.Loader.ppt, 300);
+        setTimeout(Room.Loader.start, 300);
     };
     Loads.loading();
 }
