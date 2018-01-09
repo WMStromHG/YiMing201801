@@ -7,18 +7,11 @@
 #Loader .main{
     background: url(../../img/loading.jpg);
 }
-#Loader img{
-    /*position: absolute;*/
-    /*top: 232px;*/
-    /*left: 307px;*/
-    /*width: 85px;*/
-    /*height: 659px;*/
-}
 #Loader .word{
     position: absolute;
     width: 352px; height: 98px;
-    top: 952px;
-    left: 158px;
+    top: 0px;
+    left: 0px;
     line-height: 98px;
     text-align: center;
     color: #000000;
@@ -28,15 +21,20 @@
 #Loader .btnWord{
     position: absolute;
     width: 314px; height: 61px;
-    left: 175px; top: 972px;
+    left: 20px; top: 20px;
     display: none;
 }
 #Loader .btn{
     position: absolute;
-    width: 352px; height: 98px;
-    left: 158px; top: 952px;
+    width: 364px; height: 117px;
+    left: 154px; top: 951px;
+    background: url(../../img/btn.png);
 }
-
+#Loader .tit{
+    position: absolute;
+    width: 465px; height: 400px;
+    left: 129px; top: 43px;
+}
 
 
 /*Index*/
@@ -70,10 +68,10 @@
     width: 214px; height: 127px;
     left: 40px; top: 930px;
 }
-#Index .nai{
+#Index .girl{
     position: absolute;
-    width: 115px; height: 248px;
-    left: 568px; top: 658px;
+    width: 108px; height: 82px;
+    left: 210px; top: 260px;
 }
 
 #Time{
