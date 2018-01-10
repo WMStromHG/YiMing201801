@@ -63,8 +63,8 @@ Room.Index.dom = function(){
 
 Room.Index.end = function(){
     if(Dom.ClickT>=40) {
-        an_nai.play();
-        setTimeout(Room.Index.ppt1, 1000)
+        axn_exportRoot.gotoAndPlay(2);
+        setTimeout(Room.Index.ppt1, 1500)
     }else Room.Index.ppt2();
 };
 
@@ -75,38 +75,45 @@ Room.Index.come_before = function(next){
     $("#Index .call1").velocity({ rotateZ:["-1deg","1deg"] }, { easing:"linear", duration: 100, loop: true});
     $("#Index .point").velocity({ translateX:[-8, 0] }, { duration: 500, loop: true});
 
+    fcav.sprite["yeye"].gotoAndPlay("run");
+    fcav.sprite["dog"].gotoAndPlay("run");
+
+    $("#Index .mash").hide();
+
     next();
 };
 
 Room.Index.come_after = function () {
     var ts = 10;
-    // Dom.TimeHand = setInterval(function(){
-    //     $("#Time").html(--ts);
-    //     if(ts==0){
-    //         clearInterval(Dom.TimeHand);
-    //         Dom.unClick = false;
-    //         Room.Index.end()
-    //     }
-    // },1000);
+    Dom.TimeHand = setInterval(function(){
+        $("#Time").html(--ts);
+        if(ts==0){
+            clearInterval(Dom.TimeHand);
+            Dom.unClick = false;
+            Room.Index.end()
+        }
+    },1000);
 };
 
 Room.Index.going = function () {
     $("#Index .call1").velocity("stop");
     $("#Index .point").velocity("stop");
+    $("#Index .girl").velocity("stop");
+
+    fcav.sprite["yeye"].gotoAndPlay("ini");
+    fcav.sprite["dog"].gotoAndPlay("ini");
+
+    $("#Index .mash").fadeIn();
 };
 
 Room.Index.ppt1 = function(){
     cc.ppt(["Index", "Tel"] , function(after , callback){
-        cc.m["Tel"].css({"opacity": 0}).show().velocity({ opacity: 1}, { duration: 500, complete:function(){
-            after.go();
-        }});
+        cc.m["Tel"].css({"opacity": 0}).show().velocity({ opacity: 0}, { duration: 500});
     })
 };
 
 Room.Index.ppt2 = function(){
     cc.ppt(["Index", "Fail"] , function(after , callback){
-        cc.m["Fail"].css({"opacity": 0}).show().velocity({ opacity: 1}, { duration: 500, complete:function(){
-            after.go();
-        }});
+        cc.m["Fail"].css({"opacity": 0}).show().velocity({ opacity: 0}, { duration: 500});
     })
 };

@@ -2,7 +2,7 @@ function loader() {
     libs.create();
     libs.setTicker(25);
     libs.iniDom();
-    an_nai_init();
+    an_init();
 
     Dom.loadWord = $("#Loader .word");
 
@@ -21,6 +21,10 @@ function loader() {
 
     Loads.loads("yeye1",  "img/family/", "yeye1.png");
     Loads.loads("yeye2",  "img/family/", "yeye2.png");
+
+    Loads.loads("dog1",  "img/family/", "dog1.png");
+    Loads.loads("dog2",  "img/family/", "dog2.png");
+    Loads.loads("dog3",  "img/family/", "dog3.png");
 
     Loads.progress = function(e){
         var i = parseInt(e.loaded*100);
@@ -55,17 +59,30 @@ function fcavcas(){
     fcav = new CanvasCreate($("#fcanvas"));
 
     fcav.ccv("f");
-    //fcav.drawImg("yeye1","f");
     fcav.drawPhotos("yeye", "f",  "yeye", 2, {
         frames:[0,0,113,168],
         framerate: 1.5,
         mov: {
-            ini: [0,1]
+            ini: [0],
+            run:[0,1]
         },
         conf:{
             x:324, y:179
         }
     });
+
+    fcav.drawPhotos("dog", "f",  "dog", 3, {
+        frames:[0,0,77,113],
+        framerate: 5,
+        mov: {
+            ini: [0],
+            run: [0,2]
+        },
+        conf:{
+            x:144, y:795
+        }
+    });
+
     fcav.show("f");
 
 }

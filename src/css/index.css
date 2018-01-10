@@ -76,24 +76,37 @@
 
 #Time{
     position: absolute;
-    width: 100px; height: 100px;
-    top: 20px;
-    left: 20px;
-    line-height: 98px;
+    width: 100px; height: 30px;
+    top: 125px;
+    left: 200px;
+    line-height: 30px;
     text-align: center;
     color: #000000;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: bold;
 }
 
 #ClickT{
     position: absolute;
-    width: 100px; height: 100px;
-    top: 20px;
-    left: 220px;
-    line-height: 98px;
+    width: 100px; height: 30px;
+    top: 53px;
+    left: 200px;
+    line-height: 30px;
     text-align: center;
     color: #000000;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: bold;
+}
+
+canvas{
+    position: absolute;
+    top: 0; left: 0;
+}
+
+#Index .mash{
+    position: absolute;
+    width: 700px; height: 1140px;
+    top: 0; left: 0;
+    background-color: #000;
+    opacity: 0.6;
 }
