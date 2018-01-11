@@ -11,7 +11,7 @@
     position: absolute;
     width: 352px; height: 98px;
     top: 0px;
-    left: 0px;
+    left: 20px;
     line-height: 98px;
     text-align: center;
     color: #000000;
@@ -49,24 +49,27 @@
 #Index .call1{
     position: absolute;
     width: 318px; height: 233px;
-    left: 262px; top: 858px;
+    left: 212px; top: 870px;
+    transform:scale(1.15, 1.15);
 }
 #Index .call2{
     position: absolute;
     width: 370px; height: 343px;
-    left: 214px; top: 748px;
+    left: 164px; top: 760px;
     display: none;
+    transform:scale(1.15, 1.15);
 }
 #Index .call_btn{
     position: absolute;
     width: 318px; height: 233px;
-    left: 262px; top: 858px;
+    left: 212px; top: 870px;
+    transform:scale(1.15, 1.15);
 }
 
 #Index .point{
     position: absolute;
-    width: 214px; height: 127px;
-    left: 40px; top: 930px;
+    width: 150px; height: 89px;
+    left: 34px; top: 959px;
 }
 #Index .girl{
     position: absolute;

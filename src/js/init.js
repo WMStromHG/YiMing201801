@@ -31,12 +31,13 @@ function loader() {
     Loads.loads("end_fail",  "img/end/", "fail.png");
     Loads.loads("end_tel",  "img/end/", "tel.png");
 
+    Loads.loads("mp3_bg",  "mp3/", "bg.mp3");
     Loads.loads("mp3_ling",  "mp3/", "ling.mp3");
     Loads.loads("mp3_ring",  "mp3/", "ring.mp3");
     Loads.loads("mp3_yes",  "mp3/", "yes.mp3");
     Loads.loads("mp3_no",  "mp3/", "no.mp3");
     Loads.loads("mp3_jump",  "mp3/", "jump.mp3");
-    Loads.loads("mp3_bg",  "mp3/", "bg.mp3");
+
 
     Loads.progress = function(e){
         var i = parseInt(e.loaded*100);

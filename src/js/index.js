@@ -20,7 +20,7 @@ Room.Loader.dom = function(){
 
     $("#Loader .btn").tap(function(e){
         cc.tap(e);
-        mp3_play("bg", 1);
+        //mp3_play("bg", 1);
         Room.Loader.ppt();
     });
 
@@ -89,7 +89,7 @@ Room.Index.come_before = function(next){
 
     $("#Index .girl").velocity({ rotateZ:["-1deg","4deg"] }, { duration: 1000, loop: true});
 
-    $("#Index .call1").velocity({ rotateZ:["-1deg","1deg"] }, { easing:"linear", duration: 100, loop: true});
+    $("#Index .call1").velocity({ rotateZ:["-1deg","1deg"], scale:[1.15, 1.15] }, { easing:"linear", duration: 100, loop: true});
     $("#Index .point").velocity({ translateX:[-8, 0] }, { duration: 500, loop: true});
 
     fcav.sprite["yeye"].gotoAndPlay("run");
@@ -98,7 +98,7 @@ Room.Index.come_before = function(next){
     $("#Index .mash").hide();
 
     $("#ClickT").html("0");
-    $("#Time").html("10");
+    $("#Time").html("15");
     Dom.ClickT = 0;
     Dom.unClick = true;
 
@@ -106,7 +106,7 @@ Room.Index.come_before = function(next){
 };
 
 Room.Index.come_after = function () {
-    var ts = 10;
+    var ts = 15;
     Dom.TimeHand = setInterval(function(){
         $("#Time").html(--ts);
         if(ts==0){
@@ -145,11 +145,14 @@ Room.Index.ppt2 = function(){
 
 Room.Index.ppt_back = function(){
 
-    cc.m[cc.id].velocity({ opacity: 0}, { duration: 500, display: "none" });
+    Dom._unable.show();
+    cc.m[cc.id].velocity({ opacity: 0}, { duration: 400, display: "none" });
 
     cc.ppt(["Index", "Loader"] , function(after , callback){
         cc.m["Index"].velocity({ opacity: 0}, { duration: 500, display: "none" });
-        cc.m["Loader"].css({"opacity": 0}).show().velocity({ opacity: 1}, { duration: 500});
+        cc.m["Loader"].css({"opacity": 0}).show().velocity({ opacity: 1}, { duration: 500, complete:function(){
+                Dom._unable.hide();
+            }});
     })
 };
 
@@ -157,13 +160,13 @@ Room.Index.ppt_back = function(){
 //Fail
 Room.Fail = {};
 Room.Fail.come_before = function(next){
-    $("#Fail .word").html("10秒内你为一鸣牛奶打call "+Dom.ClickT+"次");
+    $("#Fail .word").html("15秒内你为一鸣牛奶打call "+Dom.ClickT+"次");
     next();
 };
 
 //Tel
 Room.Tel = {};
 Room.Tel.come_before = function(next){
-    $("#Tel .word").html("10秒内你为一鸣牛奶打call "+Dom.ClickT+"次");
+    $("#Tel .word").html("15秒内你为一鸣牛奶打call "+Dom.ClickT+"次");
     next();
 };
