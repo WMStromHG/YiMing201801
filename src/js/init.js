@@ -6,7 +6,7 @@ function loader() {
 
     Dom.loadWord = $("#Loader .word");
 
-    // Loads.loads("mp3_bg",  "mp3/", "bg.mp3");
+    //
 
     Loads.loads("loadword",  "img/", "loadword.png");
     Loads.loads("loadtit",  "img/", "tit.png");
@@ -25,6 +25,18 @@ function loader() {
     Loads.loads("dog1",  "img/family/", "dog1.png");
     Loads.loads("dog2",  "img/family/", "dog2.png");
     Loads.loads("dog3",  "img/family/", "dog3.png");
+
+    Loads.loads("end_tit",  "img/end/", "end.png");
+    Loads.loads("end_back",  "img/end/", "back.png");
+    Loads.loads("end_fail",  "img/end/", "fail.png");
+    Loads.loads("end_tel",  "img/end/", "tel.png");
+
+    Loads.loads("mp3_ling",  "mp3/", "ling.mp3");
+    Loads.loads("mp3_ring",  "mp3/", "ring.mp3");
+    Loads.loads("mp3_yes",  "mp3/", "yes.mp3");
+    Loads.loads("mp3_no",  "mp3/", "no.mp3");
+    Loads.loads("mp3_jump",  "mp3/", "jump.mp3");
+    Loads.loads("mp3_bg",  "mp3/", "bg.mp3");
 
     Loads.progress = function(e){
         var i = parseInt(e.loaded*100);
@@ -45,10 +57,21 @@ function loader() {
 
         $("#Index .girl").html(Loads.get("girl"));
 
+        $("#Fail .end").html(Loads.get("end_tit"));
+        $("#Fail .fail").html(Loads.get("end_fail"));
+        $("#Fail ._back").html(Loads.get("end_back"));
+
+        $("#Tel .tel").html(Loads.get("end_tel"));
+
+        Loads.copy("end_tit", "end_tit_copy");
+        Loads.copy_run(function(){
+            $("#Tel .end").css("background-image", "url("+Loads.copy_img["end_tit_copy"]+")");
+
+            setTimeout(Room.Loader.start, 300);
+        });
+
         fcavcas();
 
-        // mp3_play("bg", 1);
-        setTimeout(Room.Loader.start, 300);
     };
     Loads.loading();
 }

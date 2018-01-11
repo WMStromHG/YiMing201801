@@ -20,6 +20,7 @@ Room.Loader.dom = function(){
 
     $("#Loader .btn").tap(function(e){
         cc.tap(e);
+        mp3_play("bg", 1);
         Room.Loader.ppt();
     });
 
@@ -39,6 +40,10 @@ Room.Index.dom = function(){
 
     $("#Index .call_btn").tap(function(e){
         cc.tap(e);
+        mp3_stop("ling");
+        mp3_play("ling");
+        mp3_stop("ring");
+        mp3_play("ring");
 
         if(!Dom.unClick) return;
 
@@ -57,12 +62,24 @@ Room.Index.dom = function(){
             $("#Index .call2").hide();
         }, 500);
 
-        $("#ClickT").html(Dom.ClickT++);
+        Dom.ClickT++;
+        $("#ClickT").html(Dom.ClickT);
+    });
+
+    $("._back").tap(function(e){
+        cc.tap(e);
+        Room.Index.ppt_back();
     });
 };
 
 Room.Index.end = function(){
+
+    mp3_stop("ring");
+    mp3_stop("ling");
+    mp3_stop("bg");
+
     if(Dom.ClickT>=40) {
+        mp3_play("jump");
         axn_exportRoot.gotoAndPlay(2);
         setTimeout(Room.Index.ppt1, 1500)
     }else Room.Index.ppt2();
@@ -80,6 +97,11 @@ Room.Index.come_before = function(next){
 
     $("#Index .mash").hide();
 
+    $("#ClickT").html("0");
+    $("#Time").html("10");
+    Dom.ClickT = 0;
+    Dom.unClick = true;
+
     next();
 };
 
@@ -96,6 +118,7 @@ Room.Index.come_after = function () {
 };
 
 Room.Index.going = function () {
+
     $("#Index .call1").velocity("stop");
     $("#Index .point").velocity("stop");
     $("#Index .girl").velocity("stop");
@@ -107,13 +130,40 @@ Room.Index.going = function () {
 };
 
 Room.Index.ppt1 = function(){
+    mp3_play("yes");
     cc.ppt(["Index", "Tel"] , function(after , callback){
-        cc.m["Tel"].css({"opacity": 0}).show().velocity({ opacity: 0}, { duration: 500});
+        cc.m["Tel"].css({"opacity": 0}).show().velocity({ opacity: 1}, { duration: 500});
     })
 };
 
 Room.Index.ppt2 = function(){
+    mp3_play("no");
     cc.ppt(["Index", "Fail"] , function(after , callback){
-        cc.m["Fail"].css({"opacity": 0}).show().velocity({ opacity: 0}, { duration: 500});
+        cc.m["Fail"].css({"opacity": 0}).show().velocity({ opacity: 1}, { duration: 500});
     })
+};
+
+Room.Index.ppt_back = function(){
+
+    cc.m[cc.id].velocity({ opacity: 0}, { duration: 500, display: "none" });
+
+    cc.ppt(["Index", "Loader"] , function(after , callback){
+        cc.m["Index"].velocity({ opacity: 0}, { duration: 500, display: "none" });
+        cc.m["Loader"].css({"opacity": 0}).show().velocity({ opacity: 1}, { duration: 500});
+    })
+};
+
+
+//Fail
+Room.Fail = {};
+Room.Fail.come_before = function(next){
+    $("#Fail .word").html("10秒内你为一鸣牛奶打call "+Dom.ClickT+"次");
+    next();
+};
+
+//Tel
+Room.Tel = {};
+Room.Tel.come_before = function(next){
+    $("#Tel .word").html("10秒内你为一鸣牛奶打call "+Dom.ClickT+"次");
+    next();
 };

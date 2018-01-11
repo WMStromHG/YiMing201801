@@ -108,5 +108,63 @@ canvas{
     width: 700px; height: 1140px;
     top: 0; left: 0;
     background-color: #000;
-    opacity: 0.6;
+    opacity: 0.8;
+}
+
+._back{
+    position: absolute;
+    width: 255px; height: 77px;
+    left: 223px; top: 905px;
+}
+
+#Fail{ background: inherit; }
+#Fail .end{
+    position: absolute;
+    width: 427px; height: 212px;
+    left: 121px; top: 243px;
+}
+#Fail .fail{
+    position: absolute;
+    width: 299px; height: 215px;
+    left: 203px; top: 630px;
+}
+#Fail .word{
+    position: absolute;
+    width: 461px; height: 45px;
+    left: 127px; top: 459px;
+    font-size: 32px; color: #fff;
+    text-align: center; line-height: 45px;
+}
+#Fail .word1{
+    position: absolute;
+    width: 461px; height: 45px;
+    left: 127px; top: 510px;
+    font-size: 32px; color: #fff;
+    text-align: center; line-height: 45px;
+}
+
+#Tel{ background: inherit; }
+#Tel .end{
+    position: absolute;
+    width: 427px; height: 212px;
+    left: 121px; top: 243px;
+}
+#Tel .word{
+    position: absolute;
+    width: 461px; height: 45px;
+    left: 127px; top: 459px;
+    font-size: 32px; color: #fff;
+    text-align: center; line-height: 45px;
+}
+#Tel .word1{
+    position: absolute;
+    width: 461px; height: 45px;
+    left: 127px; top: 510px;
+    font-size: 32px; color: #fff;
+    text-align: center; line-height: 45px;
+}
+#Tel .tel{
+    position: absolute;
+    width: 419px; height: 237px;
+    left: 140px; top: 639px;
 }
