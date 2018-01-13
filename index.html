@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type">
     <meta content="text/html; charset=utf-8">
     <meta charset="utf-8">
-    <title>一鸣H5推广</title>
+    <title>为一鸣牛奶疯狂打CALL抽新春奶券~</title>
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -29,6 +29,7 @@
 </head>
 
 <body>
+<div style="display: none"><img src="img/logo.jpg" alt=""></div>
 <div id="_unable"></div>
 
 <div id="app">
@@ -78,10 +79,14 @@
         <div class="main">
             <div class="end"></div>
             <div class="word"></div>
-            <div class="word1">获得一次抽奖机会</div>
 
+            <div class="c1"></div>
+            <div class="c2"></div>
+            <div class="word1">100</div>
+
+            <div class="telword">输入手机号码</div>
             <div class="tel"></div>
-            <!--<input type="text">-->
+            <input id="Input" type="text">
             <div class="btn"></div>
         </div>
     </section>
@@ -129,7 +134,12 @@
        //     if(!Dom.ad_bad) window.location.reload();
        // },5000);
 
-        loader();
+        $.get("php/nums.php", function(result){
+            Dom.max = parseInt(result);
+            $("#Tel .word1").html(Dom.max);
+            loader();
+        });
+
     });
 
 

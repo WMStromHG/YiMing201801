@@ -30,6 +30,8 @@ function loader() {
     Loads.loads("end_back",  "img/end/", "back.png");
     Loads.loads("end_fail",  "img/end/", "fail.png");
     Loads.loads("end_tel",  "img/end/", "tel.png");
+    Loads.loads("end_c1",  "img/end/", "c1.png");
+    Loads.loads("end_c2",  "img/end/", "c2.png");
 
     Loads.loads("mp3_bg",  "mp3/", "bg.mp3");
     Loads.loads("mp3_ling",  "mp3/", "ling.mp3");
@@ -63,6 +65,8 @@ function loader() {
         $("#Fail ._back").html(Loads.get("end_back"));
 
         $("#Tel .tel").html(Loads.get("end_tel"));
+        $("#Tel .c1").html(Loads.get("end_c1"));
+        $("#Tel .c2").html(Loads.get("end_c2"));
 
         Loads.copy("end_tit", "end_tit_copy");
         Loads.copy_run(function(){

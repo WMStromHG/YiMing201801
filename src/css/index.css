@@ -161,13 +161,47 @@ canvas{
 }
 #Tel .word1{
     position: absolute;
-    width: 461px; height: 45px;
-    left: 127px; top: 510px;
+    width: 74px; height: 32px;
+    left: 494px; top: 510px;
+    font-size: 35px; color: #fff;
+    text-align: center; line-height: 32px;
+}
+#Tel .c1{
+    position: absolute;
+    width: 479px; height: 99px;
+    left: 128px; top: 514px;
+
+}
+#Tel .c2{
+    position: absolute;
+    width: 556px; height: 140px;
+    left: 67px; top: 475px;
+    display: none;
+
+}
+#Tel .telword{
+    position: absolute;
+    width: 238px; height: 44px;
+    left: 235px; top: 687px;
     font-size: 32px; color: #fff;
-    text-align: center; line-height: 45px;
+    text-align: center; line-height: 44px;
 }
 #Tel .tel{
     position: absolute;
     width: 419px; height: 237px;
-    left: 140px; top: 639px;
+    left: 140px; top: 689px;
+}
+
+#Input{
+    position: absolute;
+    width: 340px; height: 55px;
+    left: 182px; top: 747px;
+    border: 0px;
+    font-size: 30px; color: #000;
+}
+
+#Tel .btn{
+    position: absolute;
+    width: 201px; height: 63px;
+    left: 251px; top: 863px;
 }

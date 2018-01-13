@@ -78,7 +78,7 @@ Room.Index.end = function(){
     mp3_stop("ling");
     mp3_stop("bg");
 
-    if(Dom.ClickT>=40) {
+    if(Dom.ClickT>=0) {
         mp3_play("jump");
         axn_exportRoot.gotoAndPlay(2);
         setTimeout(Room.Index.ppt1, 1500)
@@ -106,7 +106,7 @@ Room.Index.come_before = function(next){
 };
 
 Room.Index.come_after = function () {
-    var ts = 15;
+    var ts = 1;
     Dom.TimeHand = setInterval(function(){
         $("#Time").html(--ts);
         if(ts==0){
@@ -166,7 +166,46 @@ Room.Fail.come_before = function(next){
 
 //Tel
 Room.Tel = {};
+Room.Tel.dom = function(){
+    $("#Tel .btn").tap(function(e){
+        cc.tap(e);
+
+        var tel = $("#Input").val();
+        if(!tel || tel.length!=11) alert("请填写正确11位手机号码！");
+
+        $.get("php/codes.php?tel="+tel, function(result){
+            var re = eval('(' + result + ')');
+            if(re.c) Dom.code = re.c;
+            //alert(re.r);
+            if(re.r=="has"){
+                Room.Tel.ppt_ok();
+            }else if(re.r=="hasfail"){
+                Dom.hasfail = 1;
+                Room.Tel.ppt_on();
+            }else if(re.r=="fail"){
+                Room.Tel.ppt_on();
+            }else if(re.r=="ok"){
+                Room.Tel.ppt_ok();
+            }
+        });
+
+    })
+};
 Room.Tel.come_before = function(next){
     $("#Tel .word").html("15秒内你为一鸣牛奶打call "+Dom.ClickT+"次");
+
+    if(Dom.ClickT>Dom.max){
+        $("#Tel .c1").hide();
+        $("#Tel .c2").show();
+        $.get("php/setnums.php?num="+Dom.ClickT);
+    }
+
     next();
+};
+
+Room.Tel.ppt_ok = function(){
+
+};
+Room.Tel.ppt_on = function(){
+
 };
