@@ -5,6 +5,20 @@ include(Root.'/config.php');
 
 $cc = new cc();
 $tel = $_GET["tel"];
+$ctel = $_COOKIE["tel"];
+if($ctel) {
+    $xtel = $tel;
+    $tel = $ctel;
+
+}
+
+if(strlen($tel)!=11) die('{r:"fail"}');
+
+//是否还有券
+$cc->where = "mk='0'";
+$cc->field = "id";
+$rs = $cc->opsql("codes");
+if(!$rs) die('{r:"nocode"}');
 
 //查找是否成功/失败领取
 $cc->field = "tel";
@@ -18,16 +32,20 @@ $cc->field = "codes";
 $cc->where = "tel='$tel' and mk='1'";
 $has = $cc->opsql("codes");
 if($has["codes"]){
-    die('{r:"has", c:"'.$has["codes"].'"}');
+    if($tel==$xtel)
+        die('{r:"has", c:"'.$has["codes"].'"}');
+    else
+        die('{r:"has", c:"'.$has["codes"].'", tel:"'.$tel.'"}');
 }
 
 //抽奖
 $j = rand(1,100);
-if($j>10){
+if($j>90){
     //失败
     $cc->sqli("tel", $tel);
     $cc->sqli("datetimes", $cc->now());
     $cc->opsql("fail", "add");
+    setcookie("tel", $tel, time()+3600000);
     die('{r:"fail"}');
 }else{
     //成功
@@ -48,6 +66,7 @@ if($j>10){
 
     //发信息
     $r = send($tel, $rs["codes"]);
+    setcookie("tel", $tel, time()+3600000);
     if($r->msg!="成功") {
         //失败
         die('{r:"ok", c:"'.$rs["codes"].'", x:1}');

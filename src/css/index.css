@@ -120,6 +120,7 @@ canvas{
     left: 223px; top: 905px;
 }
 
+/*Fail*/
 #Fail{ background: inherit; }
 #Fail .end{
     position: absolute;
@@ -146,6 +147,8 @@ canvas{
     text-align: center; line-height: 45px;
 }
 
+
+/*Tel*/
 #Tel{ background: inherit; }
 #Tel .end{
     position: absolute;
@@ -204,4 +207,42 @@ canvas{
     position: absolute;
     width: 201px; height: 63px;
     left: 251px; top: 863px;
+}
+
+/*Codes*/
+#Codes{ background: inherit; }
+#Codes .bg{
+    position: absolute;
+    width: 636px; height: 1056px;
+    left: 5px; top: 4px;
+}
+#Codes .codes{
+    position: absolute;
+    width: 372px; height: 45px;
+    left: 201px; top: 653px;
+    font-size: 32px; color: #2a2f89;
+    line-height: 45px; font-weight: bold;
+}
+#Codes ._back{
+    left: 222px; top: 1010px;
+}
+
+
+/*HasFail*/
+#HasFail .fail{
+    position: absolute;
+    width: 299px; height: 215px;
+    left: 199px; top: 376px;
+}
+#HasFail .word{
+    position: absolute;
+    width: 470px; height: 56px;
+    left: 118px; top: 622px;
+    font-size: 32px; color: #fff;
+    text-align: center;
+}
+#HasFail .cls{
+    position: absolute;
+    width: 35px; height: 37px;
+    left: 622px; top: 39px;
 }

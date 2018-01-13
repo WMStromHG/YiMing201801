@@ -32,6 +32,8 @@ function loader() {
     Loads.loads("end_tel",  "img/end/", "tel.png");
     Loads.loads("end_c1",  "img/end/", "c1.png");
     Loads.loads("end_c2",  "img/end/", "c2.png");
+    Loads.loads("end_cls",  "img/end/", "cls.png");
+    Loads.loads("end_code",  "img/end/", "code.png");
 
     Loads.loads("mp3_bg",  "mp3/", "bg.mp3");
     Loads.loads("mp3_ling",  "mp3/", "ling.mp3");
@@ -68,9 +70,14 @@ function loader() {
         $("#Tel .c1").html(Loads.get("end_c1"));
         $("#Tel .c2").html(Loads.get("end_c2"));
 
+        $("#Codes .bg").html(Loads.get("end_code"));
+        $("#HasFail .cls").html(Loads.get("end_cls"));
+
         Loads.copy("end_tit", "end_tit_copy");
+        Loads.copy("end_fail", "end_fail_copy");
         Loads.copy_run(function(){
             $("#Tel .end").css("background-image", "url("+Loads.copy_img["end_tit_copy"]+")");
+            $("#HasFail .fail").css("background-image", "url("+Loads.copy_img["end_fail_copy"]+")");
 
             setTimeout(Room.Loader.start, 300);
         });

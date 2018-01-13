@@ -70,6 +70,11 @@ Room.Index.dom = function(){
         cc.tap(e);
         Room.Index.ppt_back();
     });
+
+    $("#HasFail").tap(function(e){
+        cc.tap(e);
+        Room.Index.ppt_back();
+    });
 };
 
 Room.Index.end = function(){
@@ -147,6 +152,7 @@ Room.Index.ppt_back = function(){
 
     Dom._unable.show();
     cc.m[cc.id].velocity({ opacity: 0}, { duration: 400, display: "none" });
+    $("#Loader .btn").velocity({ rotateZ:["-1deg","1deg"] }, { easing:"linear", duration: 100, loop: true});
 
     cc.ppt(["Index", "Loader"] , function(after , callback){
         cc.m["Index"].velocity({ opacity: 0}, { duration: 500, display: "none" });
@@ -171,24 +177,36 @@ Room.Tel.dom = function(){
         cc.tap(e);
 
         var tel = $("#Input").val();
-        if(!tel || tel.length!=11) alert("请填写正确11位手机号码！");
+        if(!tel || tel.length!=11) {
+            alert("请填写正确11位手机号码！");
+            return;
+        }else{
+            $.get("php/codes.php?tel="+tel, function(result){
+                var re = eval('(' + result + ')');
 
-        $.get("php/codes.php?tel="+tel, function(result){
-            var re = eval('(' + result + ')');
-            if(re.c) Dom.code = re.c;
-            //alert(re.r);
-            if(re.r=="has"){
-                Room.Tel.ppt_ok();
-            }else if(re.r=="hasfail"){
-                Dom.hasfail = 1;
-                Room.Tel.ppt_on();
-            }else if(re.r=="fail"){
-                Room.Tel.ppt_on();
-            }else if(re.r=="ok"){
-                Room.Tel.ppt_ok();
-            }
-        });
-
+                if(re.c) {
+                    Dom.code = re.c;
+                    $("#Codes .codes").html(Dom.code);
+                }
+                //alert(re.r);
+                if(re.r=="has"){
+                    if(re.tel) alert("手机号码"+re.tel+"已经领过奖了，不能重复领取");
+                    Room.Tel.ppt_ok();
+                }else if(re.r=="hasfail"){
+                    Dom.hasfail = 1;
+                    $("#HasFail .word").html('感谢你的参与<br>你已经抽过奖了！');
+                    Room.Tel.ppt_on();
+                }else if(re.r=="fail"){
+                    $("#HasFail .word").html("很遗憾  没有抽到奖哦！");
+                    Room.Tel.ppt_on();
+                }else if(re.r=="ok"){
+                    Room.Tel.ppt_ok();
+                }else if(re.r=="nocode"){
+                    $("#HasFail .word").html("你来晚了<br>券已经发送完了！");
+                    Room.Tel.ppt_on();
+                }
+            });
+        }
     })
 };
 Room.Tel.come_before = function(next){
@@ -204,8 +222,20 @@ Room.Tel.come_before = function(next){
 };
 
 Room.Tel.ppt_ok = function(){
-
+    Dom._unable.show();
+    cc.ppt([cc.id, "Codes"] , function(after , callback){
+        cc.m[cc.old].velocity({ opacity: 0}, { duration: 500, display: "none" });
+        cc.m["Codes"].css({"opacity": 0}).show().velocity({ opacity: 1}, { duration: 500, complete:function(){
+                Dom._unable.hide();
+            }});
+    })
 };
 Room.Tel.ppt_on = function(){
-
+    Dom._unable.show();
+    cc.ppt([cc.id, "HasFail"] , function(after , callback){
+        cc.m[cc.old].velocity({ opacity: 0}, { duration: 500, display: "none" });
+        cc.m["HasFail"].css({"opacity": 0}).show().velocity({ opacity: 1}, { duration: 500, complete:function(){
+                Dom._unable.hide();
+            }});
+    })
 };
