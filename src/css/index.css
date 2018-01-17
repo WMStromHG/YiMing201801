@@ -27,13 +27,27 @@
 #Loader .btn{
     position: absolute;
     width: 364px; height: 117px;
-    left: 154px; top: 951px;
+    left: 154px; top: 941px;
     background: url(../../img/btn.png);
 }
 #Loader .tit{
     position: absolute;
     width: 465px; height: 400px;
     left: 129px; top: 43px;
+}
+#Loader .read_btn{
+    position: absolute;
+    width: 135px; height: 42px;
+    left: 286px; top: 1073px;
+    background: url(../../img/read_btn.png);
+}
+
+#Loader .read{
+    position: absolute;
+    width: 700px; height: 1140px;
+    left: 0px; top: 0px;
+    background-color:rgba(0,0,0,0.8);
+    display: none;
 }
 
 
@@ -157,7 +171,7 @@ canvas{
 }
 #Tel .word{
     position: absolute;
-    width: 461px; height: 45px;
+    width: 490px; height: 45px;
     left: 127px; top: 459px;
     font-size: 32px; color: #fff;
     text-align: center; line-height: 45px;
@@ -236,7 +250,7 @@ canvas{
 }
 #HasFail .word{
     position: absolute;
-    width: 470px; height: 56px;
+    width: 490px; height: 56px;
     left: 118px; top: 622px;
     font-size: 32px; color: #fff;
     text-align: center;

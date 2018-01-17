@@ -13,7 +13,7 @@ define('VersionDate', '2014-10-26');
 define("DbHost", "localhost");
 define("DbNm",   "ym201801");
 define("DbRoot", "root");
-define("DbPsw",  "1981588k");
+define("DbPsw",  "fxkyiming123!");
 define("DbPost", "3306");
 define("DbPre",  "ym_");
 

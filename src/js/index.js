@@ -20,8 +20,18 @@ Room.Loader.dom = function(){
 
     $("#Loader .btn").tap(function(e){
         cc.tap(e);
-        //mp3_play("bg", 1);
+        mp3_play("bg", 1);
+        axn_exportRoot.gotoAndStop(0);
         Room.Loader.ppt();
+    });
+
+    $("#Loader .read_btn").tap(function(e){
+        cc.tap(e);
+        $("#Loader .read").show();
+    });
+    $("#Loader .read").tap(function(e){
+        cc.tap(e);
+        $("#Loader .read").hide();
     });
 
     $("#Loader .tit").velocity({ translateY:-600, opacity:0 }, { duration: 0});
@@ -83,7 +93,7 @@ Room.Index.end = function(){
     mp3_stop("ling");
     mp3_stop("bg");
 
-    if(Dom.ClickT>=0) {
+    if(Dom.ClickT>=40) {
         mp3_play("jump");
         axn_exportRoot.gotoAndPlay(2);
         setTimeout(Room.Index.ppt1, 1500)
@@ -111,7 +121,7 @@ Room.Index.come_before = function(next){
 };
 
 Room.Index.come_after = function () {
-    var ts = 1;
+    var ts = 15;
     Dom.TimeHand = setInterval(function(){
         $("#Time").html(--ts);
         if(ts==0){
@@ -175,7 +185,6 @@ Room.Tel = {};
 Room.Tel.dom = function(){
     $("#Tel .btn").tap(function(e){
         cc.tap(e);
-
         var tel = $("#Input").val();
         if(!tel || tel.length!=11) {
             alert("请填写正确11位手机号码！");
@@ -210,15 +219,25 @@ Room.Tel.dom = function(){
     })
 };
 Room.Tel.come_before = function(next){
-    $("#Tel .word").html("15秒内你为一鸣牛奶打call "+Dom.ClickT+"次");
 
-    if(Dom.ClickT>Dom.max){
-        $("#Tel .c1").hide();
-        $("#Tel .c2").show();
-        $.get("php/setnums.php?num="+Dom.ClickT);
-    }
+    $.get("php/nums.php", function(result){
+        Dom.max = parseInt(result);
+        $("#Tel .word1").html(Dom.max);
 
-    next();
+        $("#Tel .word").html("15秒内你为一鸣牛奶打call "+Dom.ClickT+"次");
+
+        if(Dom.ClickT>Dom.max){
+            $("#Tel .c1").hide();
+            $("#Tel .c2").show();
+            $.get("php/setnums.php?num="+Dom.ClickT);
+        }
+
+        next();
+
+    });
+
+
+
 };
 
 Room.Tel.ppt_ok = function(){

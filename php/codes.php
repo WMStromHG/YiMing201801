@@ -12,6 +12,8 @@ if($ctel) {
 
 }
 
+$tel = trimall($tel);
+
 if(strlen($tel)!=11) die('{r:"fail"}');
 
 //是否还有券
@@ -33,9 +35,9 @@ $cc->where = "tel='$tel' and mk='1'";
 $has = $cc->opsql("codes");
 if($has["codes"]){
     if($tel==$xtel)
-        die('{r:"has", c:"'.$has["codes"].'"}');
+        die('{r:"has", c:"'.trimall($has["codes"]).'"}');
     else
-        die('{r:"has", c:"'.$has["codes"].'", tel:"'.$tel.'"}');
+        die('{r:"has", c:"'.trimall($has["codes"]).'", tel:"'.$tel.'"}');
 }
 
 //抽奖
@@ -69,18 +71,26 @@ if($j>90){
     setcookie("tel", $tel, time()+3600000);
     if($r->msg!="成功") {
         //失败
-        die('{r:"ok", c:"'.$rs["codes"].'", x:1}');
+        die('{r:"ok", c:"'.trimall($rs["codes"]).'", x:1}');
     }else{
         //成功
-        die('{r:"ok", c:"'.$rs["codes"].'"}');
+        die('{r:"ok", c:"'.trimall($rs["codes"]).'"}');
     }
+}
+
+function trimall($str){
+    $qian=array(" ","　","\t","\n","\r");
+    return str_replace($qian, '', $str);
 }
 
 function send($tel, $code){
     $ch = curl_init();
 //$arr = '{"batchName":"玄武科技测试","items":[{"to":"15030258111"}],"content":"玄武科技通道测试短信","msgType":"sms ","bizType":"100"}';
-    $arr = '{"batchName":"一鸣2018H5","items":[{"to":"'.$tel.'"}],"content":"新年快乐！恭喜您获得5元抵金券一张,券号'.$code.'（仅限购买家庭装牛奶使用），有效期2018.2.14—2018.3.1，请尽快使用哦","msgType":"sms ","bizType":"100"}';
-// $code = base64_encode("zjymsp@zjymsp:".md5(""));
+
+    //$arr = '{"batchName":"一鸣2018H5","items":[{"to":"'.$tel.'"}],"content":"新年快乐！恭喜您获得5元抵金券一张,券号'.$code.'（仅限购买家庭装牛奶使用），有效期2018.2.14—2018.3.1，请尽快使用哦","msgType":"sms ","bizType":"100"}';
+    $arr = '{"batchName":"一鸣2018H5","items":[{"to":"'.$tel.'"}],"content":"新年快乐！恭喜您获得5元抵金券一张,券号'.trimall($code).'（仅限购买家庭装牛奶使用），有效期2018.2.15—2018.3.1，请尽快使用哦","msgType":"sms ","bizType":"100"}';
+
+    // $code = base64_encode("zjymsp@zjymsp:".md5(""));
 // echo $code;
 // exit;
 

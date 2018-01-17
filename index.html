@@ -29,7 +29,7 @@
 </head>
 
 <body>
-<div style="display: none"><img src="img/logo.jpg" alt=""></div>
+<!--<div style="display: none"><img src="img/logo.jpg" alt=""></div>-->
 <div id="_unable"></div>
 
 <div id="app">
@@ -42,6 +42,12 @@
             <div class="btn">
                 <div class="word"></div>
                 <div class="btnWord"></div>
+            </div>
+
+            <div class="read_btn"></div>
+            
+            <div class="read">
+                <img src="img/read.png" alt="">
             </div>
 
         </div>
@@ -149,12 +155,7 @@
        // setTimeout(function(){
        //     if(!Dom.ad_bad) window.location.reload();
        // },5000);
-
-        $.get("php/nums.php", function(result){
-            Dom.max = parseInt(result);
-            $("#Tel .word1").html(Dom.max);
-            loader();
-        });
+        loader();
 
     });
 
