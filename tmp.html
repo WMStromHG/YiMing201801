@@ -1,0 +1,83 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type">
+    <meta content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <title>为一鸣牛奶疯狂打CALL抽新春奶券~</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=700px,user-scalable=no">
+    <script>
+        var DEFAULT_WIDTH = 700,//页面的默认宽度
+            ua=navigator.userAgent.toLowerCase(),//根据useragent的信息获取浏览器信息
+            deviceWidth=window.screen.width,//设备的宽度
+            devicePixelRatio=window.devicePixelRatio||1,//物理像素和设备独立像素的比例，默认为1
+            targetDensitydpi;
+        //Android4.0以下手机不支持viewport的width，需要设置target-densitydpi
+        if(ua.indexOf("android")!==-1&&parseFloat(ua.slice(ua.indexOf("android")+8))<4){
+            targetDensitydpi=DEFAULT_WIDTH/deviceWidth*devicePixelRatio*160;
+            document.querySelector('meta[name="viewport"]').setAttribute('content', 'target-densitydpi=' + targetDensitydpi + ',width=device-width,user-scalable=no');
+        }
+    </script>
+
+    <link rel="stylesheet" href="./src/css/style.css" />
+    <link rel="stylesheet" href="./src/css/index.css" />
+
+</head>
+
+<body style="background-color: #e83437">
+<!--<div style="display: none"><img src="img/logo.jpg" alt=""></div>-->
+<div id="_unable"></div>
+
+<div id="app">
+
+    <section class="cc " id="Loader">
+        <div class="main" style="background-image: url(tmp.png)">
+
+
+        </div>
+    </section>
+
+
+</div>
+
+
+<script src="./lib/jquery-2.1.4.min.js"></script>
+<script src="./lib/jquery.mobile-1.4.5.min.js"></script>
+<script src="./lib/createjs/createjs-2015.11.26.min.js"></script>
+
+<script src="./lib/velocity/velocity.js"></script>
+
+<script src="./lib/libs.js"></script>
+<script src="./lib/libs_canvas.js"></script>
+
+<script src="./src/js/resize.js"></script>
+<!--<script src="./src/js/init.js"></script>-->
+
+
+<script>
+    $("body").on('touchmove',function(event){ event.preventDefault(); },false);
+
+    $(window).load(function(){
+        $("iframe").hide();
+        $("#ad_colse_container").remove();
+        $("body > *").each(function(){
+            if(!$(this).hasClass("ui-page")) $(this).hide();
+        });
+
+       // setTimeout(function(){
+       //     if(!Dom.ad_bad) window.location.reload();
+       // },5000);
+        loader();
+
+    });
+
+
+</script>
+
+<!--<script src="https://s19.cnzz.com/z_stat.php?id=1271414784&web_id=1271414784" language="JavaScript"></script>-->
+</body>
+</html>

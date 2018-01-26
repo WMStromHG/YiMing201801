@@ -155,7 +155,20 @@
        // setTimeout(function(){
        //     if(!Dom.ad_bad) window.location.reload();
        // },5000);
-        loader();
+
+        var comp = function(date) {
+
+            var now = new Date;
+            var d = new Date(date);
+            if (now > d) {
+                loader();
+            } else if (now < d) {
+                window.location.href="tmp.html";
+            } else {
+                loader();
+            }
+        };
+        comp("2018/01/26 17:00:00");
 
     });
 
