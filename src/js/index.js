@@ -183,14 +183,18 @@ Room.Fail.come_before = function(next){
 //Tel
 Room.Tel = {};
 Room.Tel.dom = function(){
+    Dom.myOk = 0;
     $("#Tel .btn").tap(function(e){
         cc.tap(e);
+        if(Dom.myOk) return;
+        Dom.myOk = 1;
         var tel = $("#Input").val();
         if(!tel || tel.length!=11) {
             alert("请填写正确11位手机号码！");
             return;
         }else{
             $.get("php/codes.php?tel="+tel, function(result){
+                Dom.myOk = 0;
                 var re = eval('(' + result + ')');
 
                 if(re.c) {
@@ -216,6 +220,7 @@ Room.Tel.dom = function(){
                 }
             });
         }
+
     })
 };
 Room.Tel.come_before = function(next){

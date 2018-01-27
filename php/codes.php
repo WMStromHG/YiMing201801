@@ -1,4 +1,8 @@
 <?php
+if($_COOKIE["fail"]) die('{r:"hasfail"}');
+if($_COOKIE["codes"] && trimall($_COOKIE["codes"])) die('{r:"ok", c:"'.trimall($_COOKIE["codes"]).'"}');
+
+
 define('Root', dirname(__FILE__));
 include(Root.'/mv3c/cc.php');
 include(Root.'/config.php');
@@ -16,6 +20,7 @@ $tel = trimall($tel);
 
 if(strlen($tel)!=11) die('{r:"fail"}');
 
+
 //是否还有券
 $cc->where = "mk='0'";
 $cc->field = "id";
@@ -27,6 +32,7 @@ $cc->field = "tel";
 $cc->where = "tel='$tel'";
 $fail = $cc->opsql("fail");
 if($fail["tel"]){
+    setcookie("fail", 1, time()+3600000);
     die('{r:"hasfail"}');
 }
 //查找是否成功/失败领取
@@ -34,10 +40,13 @@ $cc->field = "codes";
 $cc->where = "tel='$tel' and mk='1'";
 $has = $cc->opsql("codes");
 if($has["codes"]){
-    if($tel==$xtel)
+    setcookie("tel", $tel, time()+3600000);
+    if(trimall($has["codes"])) setcookie("codes", trimall($has["codes"]), time()+3600000);
+    if($tel==$xtel){
         die('{r:"has", c:"'.trimall($has["codes"]).'"}');
-    else
+    }else{
         die('{r:"has", c:"'.trimall($has["codes"]).'", tel:"'.$tel.'"}');
+    }
 }
 
 //抽奖
@@ -48,6 +57,7 @@ if($j>90){
     $cc->sqli("datetimes", $cc->now());
     $cc->opsql("fail", "add");
     setcookie("tel", $tel, time()+3600000);
+    setcookie("fail", 1, time()+3600000);
     die('{r:"fail"}');
 }else{
     //成功
@@ -66,16 +76,20 @@ if($j>90){
     $cc->where = "tel='$tel'";
     $rs = $cc->opsql("codes");
 
-    //发信息
-    $r = send($tel, $rs["codes"]);
     setcookie("tel", $tel, time()+3600000);
-    if($r->msg!="成功") {
-        //失败
-        die('{r:"ok", c:"'.trimall($rs["codes"]).'", x:1}');
-    }else{
-        //成功
-        die('{r:"ok", c:"'.trimall($rs["codes"]).'"}');
-    }
+    if(trimall($rs["codes"])) setcookie("codes", trimall($rs["codes"]), time()+3600000);
+    die('{r:"ok", c:"'.trimall($rs["codes"]).'"}');
+
+    //发信息
+//     $r = send($tel, $rs["codes"]);
+//     setcookie("tel", $tel, time()+3600000);
+//     if($r->msg!="成功") {
+//         //失败
+//         die('{r:"ok", c:"'.trimall($rs["codes"]).'", x:1}');
+//     }else{
+//         //成功
+//         die('{r:"ok", c:"'.trimall($rs["codes"]).'"}');
+//     }
 }
 
 function trimall($str){

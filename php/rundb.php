@@ -2,7 +2,7 @@
 define('Root', dirname(__FILE__));
 include(Root.'/mv3c/cc.php');
 include(Root.'/config.php');
-return;
+//return;
 $db = file_get_contents("juan.txt");
 $dbs = explode(" ", $db);
 $cc = new cc();
@@ -15,5 +15,5 @@ foreach($dbs as $code) {
     }
 
 }
-
+echo "ok";
 ?>
