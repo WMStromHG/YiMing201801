@@ -14,3 +14,5 @@ if($rs["nums"]<$_GET["num"] && $_GET["num"]<220){
     $cc->sqli("datetimes", $cc->now());
     $cc->opsql("nums", "edit");
 }
+
+$cc->cls();

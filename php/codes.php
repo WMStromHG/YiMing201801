@@ -25,7 +25,10 @@ if(strlen($tel)!=11) die('{r:"fail"}');
 $cc->where = "mk='0'";
 $cc->field = "id";
 $rs = $cc->opsql("codes");
-if(!$rs) die('{r:"nocode"}');
+if(!$rs) {
+    $cc->cls();
+    die('{r:"nocode"}');
+}
 
 //查找是否成功/失败领取
 $cc->field = "tel";
@@ -43,8 +46,10 @@ if($has["codes"]){
     setcookie("tel", $tel, time()+3600000);
     if(trimall($has["codes"])) setcookie("codes", trimall($has["codes"]), time()+3600000);
     if($tel==$xtel){
+        $cc->cls();
         die('{r:"has", c:"'.trimall($has["codes"]).'"}');
     }else{
+        $cc->cls();
         die('{r:"has", c:"'.trimall($has["codes"]).'", tel:"'.$tel.'"}');
     }
 }
@@ -58,13 +63,15 @@ if($j>90){
     $cc->opsql("fail", "add");
     setcookie("tel", $tel, time()+3600000);
     setcookie("fail", 1, time()+3600000);
+
+    $cc->cls();
     die('{r:"fail"}');
 }else{
     //成功
 
     //存券（锁定）
     $cc->where = "mk='0'";
-    $cc->order = "id";
+    $cc->order = "mk";
     $cc->top = 1;
     $cc->sqli("tel", $tel);
     $cc->sqli("mk", 1, "nums");
@@ -78,6 +85,8 @@ if($j>90){
 
     setcookie("tel", $tel, time()+3600000);
     if(trimall($rs["codes"])) setcookie("codes", trimall($rs["codes"]), time()+3600000);
+
+    $cc->cls();
     die('{r:"ok", c:"'.trimall($rs["codes"]).'"}');
 
     //发信息
@@ -91,6 +100,7 @@ if($j>90){
 //         die('{r:"ok", c:"'.trimall($rs["codes"]).'"}');
 //     }
 }
+
 
 function trimall($str){
     $qian=array(" ","　","\t","\n","\r");

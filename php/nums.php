@@ -9,3 +9,5 @@ $cc->field = "nums";
 $cc->where = "id=1";
 $rs = $cc->opsql("nums");
 echo $rs["nums"];
+
+$cc->cls();
