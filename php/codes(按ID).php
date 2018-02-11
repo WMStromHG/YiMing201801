@@ -71,7 +71,7 @@ if($j>90){
 
     //存券（锁定）
     $cc->where = "mk='0'";
-    $cc->order = " RAND()";
+    $cc->order = "id";
     $cc->top = 1;
     $cc->sqli("tel", $tel);
     $cc->sqli("mk", 1, "nums");
